@@ -1,0 +1,56 @@
+<div class="container">
+<form #f="ngForm">
+<div class="mb-3">
+    <label for="id" class="form-label">ID</label>
+    <input type="text" class="form-control" name="id" [ngModel]="id" required>
+  </div>
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control" name="title" [ngModel]="title" required>
+  </div>
+  <div class="mb-3">
+    <label for="userId" class="form-label">UserId</label>
+    <input type="number" class="form-control" name="userId" [ngModel]="userId" required>
+  </div>
+  <div class="mb-3">
+    <label for="tags" class="form-label">Tags</label>
+    <input type="text" class="form-control" name="tags" [ngModel]="tags" required>
+  </div>
+  <div class="mb-3">
+    <label for="reactions" class="form-label">Reactions</label>
+    <input type="number" class="form-control" name="reactions" [ngModel]="reactions" required>
+  </div>
+  <button *ngIf="id == 0" class="btn btn-primary" (click)="savePosts(f)">save</button>
+  <button *ngIf="id > 0" class="btn btn-primary" (click)="updatePosts(f)">update</button>
+</form>
+
+<div class="container">
+<table class="table table-striped">
+	<thead>
+		<tr>
+            <th scope="col">id</th>
+            <th scope="col">Title</th>
+            <th scope="col">userId</th>
+            <th scope="col">Tags</th>
+            <th scope="col">Reaction</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let post of posts">
+			<td>{{ post.id }}</td>
+			<td>{{ post.title }}</td>
+            <td>{{ post.userId }}</td>
+            <td>{{ post.tags }}</td>
+            <td>{{ post.reactions }}</td>
+            <td>
+                <button class="btn btn-danger" (click)="deletePosts( post.id )">Delete</button>
+                <button class="btn btn-primary m-1" (click)="editPosts(post.id)">Edit</button>
+                <a [routerLink]="['/postview']">view</a>
+            </td>
+		</tr>
+        <tr *ngIf="isLoading">
+            <td colspan="4">loading...</td>
+        </tr>
+	</tbody>
+</table>
+</div>
