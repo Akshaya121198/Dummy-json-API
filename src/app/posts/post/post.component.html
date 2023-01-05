@@ -45,7 +45,7 @@
             <td>
                 <button class="btn btn-danger" (click)="deletePosts( post.id )">Delete</button>
                 <button class="btn btn-primary m-1" (click)="editPosts(post.id)">Edit</button>
-                <a [routerLink]="['/postview']">view</a>
+                <a [routerLink]="['/posts', post.id]">view</a>
             </td>
 		</tr>
         <tr *ngIf="isLoading">
