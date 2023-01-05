@@ -29,8 +29,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IPosts } from '../post/IPosts';
-import { PostsService } from '../posts.service';
+import { IPosts } from '../posts/post/IPosts';
+import { PostsService } from '../posts/posts.service';
 
 @Component({
   selector: 'app-postview',
@@ -47,7 +47,7 @@ export class PostviewComponent implements OnInit {
   ngOnInit(): void {
     this.id = this._activatedrouter.snapshot.params["routes"];
     alert(this.id);
-    this._postservice.editPosts(this.id).subscribe((posts) => {
+    this._postservice.editPosts(this.id).subscribe((posts: any) => {
       if(posts) {
         this.posts = posts
       }
